@@ -1,0 +1,56 @@
+# =====================
+# Node / React / Vite
+# =====================
+node_modules/
+dist/
+build/
+.vite/
+*.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# =====================
+# Android / Kotlin
+# =====================
+.gradle/
+local.properties
+*.iml
+captures/
+.cxx/
+.externalNativeBuild/
+
+# Android build folders
+**/build/
+
+# Android Studio
+.idea/
+*.iws
+
+# =====================
+# Firebase
+# =====================
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# =====================
+# OS / Editor
+# =====================
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Temp
+tmp/
+temp/
+*.log
