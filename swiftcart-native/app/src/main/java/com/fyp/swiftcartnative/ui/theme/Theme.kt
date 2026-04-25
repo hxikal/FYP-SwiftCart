@@ -10,17 +10,39 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import ui.theme.SwiftCartBackground
+import ui.theme.SwiftCartDestructive
+import ui.theme.SwiftCartForeground
+import ui.theme.SwiftCartMuted
+import ui.theme.SwiftCartMutedForeground
+import ui.theme.SwiftCartPrimary
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = SwiftCartPrimary,
+    secondary = SwiftCartMuted,
+    tertiary = SwiftCartPrimary,
+    background = SwiftCartBackground,
+    surface = SwiftCartBackground,
+    onPrimary = SwiftCartBackground,
+    onSecondary = SwiftCartForeground,
+    onBackground = SwiftCartForeground,
+    onSurface = SwiftCartForeground,
+    error = SwiftCartDestructive
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = SwiftCartPrimary,
+    secondary = SwiftCartMuted,
+    tertiary = SwiftCartPrimary,
+    background = SwiftCartBackground,
+    surface = SwiftCartBackground,
+    surfaceVariant = SwiftCartMuted,
+    onPrimary = SwiftCartBackground,
+    onSecondary = SwiftCartForeground,
+    onBackground = SwiftCartForeground,
+    onSurface = SwiftCartForeground,
+    onSurfaceVariant = SwiftCartMutedForeground,
+    error = SwiftCartDestructive
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -37,7 +59,7 @@ private val LightColorScheme = lightColorScheme(
 fun SwiftCartNativeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
