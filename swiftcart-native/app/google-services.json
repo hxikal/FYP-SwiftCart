@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "495352913150",
+    "project_id": "huntgry-cafe-apps",
+    "storage_bucket": "huntgry-cafe-apps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495352913150:android:486a938578105a4c5c99af",
+        "android_client_info": {
+          "package_name": "com.fyp.swiftcartnative"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMioigjUiumfJNZtPG4TNNSjc0e-ZrxbQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
