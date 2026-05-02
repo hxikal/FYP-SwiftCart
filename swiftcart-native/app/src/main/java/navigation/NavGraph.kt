@@ -1,6 +1,7 @@
 package navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,6 +29,10 @@ fun NavGraph(
     productViewModel: ProductViewModel = remember { ProductViewModel() },
     cartViewModel: CartViewModel = remember { CartViewModel() }
 ) {
+    LaunchedEffect(Unit) {
+        productViewModel.loadProducts()
+    }
+
     var route: SwiftCartRoute by remember { mutableStateOf(SwiftCartRoute.Splash) }
     val navigateHomeAndClearBackStack = {
         route = SwiftCartRoute.Home
