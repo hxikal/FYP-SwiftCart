@@ -11,5 +11,6 @@
       "@/*": ["./src/*"]
     }
   },
-   "include": ["src", "src/env.d.ts"] 
+   "include": ["src", "src/env.d.ts"],
+   "exclude": ["src/app/components/ui"]
 } 

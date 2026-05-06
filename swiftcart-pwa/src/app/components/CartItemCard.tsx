@@ -1,5 +1,6 @@
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { type CartItem } from '../context/CartContext';
+import { formatPrice } from '../utils/formatPrice';
 
 interface CartItemCardProps {
   item: CartItem;
@@ -21,7 +22,7 @@ export function CartItemCard({ item, onUpdateQuantity, onRemove }: CartItemCardP
       <div className="flex-1 flex flex-col">
         <h3 className="mb-1" style={{ fontSize: '14px' }}>{item.name}</h3>
         <p className="text-primary mb-2" style={{ fontSize: '16px', fontWeight: '600' }}>
-          ${item.price.toFixed(2)}
+          {formatPrice(item.price)}
         </p>
 
         <div className="flex items-center justify-between mt-auto">

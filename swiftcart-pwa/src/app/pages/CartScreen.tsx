@@ -4,6 +4,7 @@ import { Button } from '../components/Button';
 import { CartItemCard } from '../components/CartItemCard';
 import { BottomNav } from '../components/BottomNav';
 import { useCart } from '../context/CartContext';
+import { formatPrice } from '../utils/formatPrice';
 
 export function CartScreen() {
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ export function CartScreen() {
               Subtotal ({itemCount} {itemCount === 1 ? 'item' : 'items'})
             </span>
             <span style={{ fontSize: '16px', fontWeight: '600' }}>
-              ${total.toFixed(2)}
+              {formatPrice(total)}
             </span>
           </div>
 

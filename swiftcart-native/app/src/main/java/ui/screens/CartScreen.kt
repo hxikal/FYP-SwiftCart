@@ -41,6 +41,7 @@ import ui.theme.SwiftCartMuted
 import ui.theme.SwiftCartMutedForeground
 import ui.theme.SwiftCartPrimary
 import ui.theme.SwiftCartScreenPadding
+import ui.util.formatPrice
 
 @Composable
 fun CartScreen(
@@ -214,7 +215,7 @@ private fun CartSummaryBar(
                     fontSize = 14.sp
                 )
                 Text(
-                    text = "$%.2f".format(total),
+                    text = formatPrice(total),
                     color = Color.Black,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold

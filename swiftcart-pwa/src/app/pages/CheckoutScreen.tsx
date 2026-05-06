@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '../components/Button';
 import { useCart } from '../context/CartContext';
+import { formatPrice } from '../utils/formatPrice';
 import { motion } from 'motion/react';
 
 export function CheckoutScreen() {
@@ -70,7 +71,7 @@ export function CheckoutScreen() {
                     </p>
                   </div>
                   <p style={{ fontSize: '14px', fontWeight: '600' }}>
-                    ${(item.price * item.quantity).toFixed(2)}
+                    {formatPrice(item.price * item.quantity)}
                   </p>
                 </div>
               ))}
@@ -79,19 +80,19 @@ export function CheckoutScreen() {
             <div className="border-t border-border pt-4 space-y-2">
               <div className="flex justify-between" style={{ fontSize: '14px' }}>
                 <span className="text-muted-foreground">Subtotal</span>
-                <span>${total.toFixed(2)}</span>
+                <span>{formatPrice(total)}</span>
               </div>
               <div className="flex justify-between" style={{ fontSize: '14px' }}>
                 <span className="text-muted-foreground">Shipping</span>
-                <span>${shipping.toFixed(2)}</span>
+                <span>{formatPrice(shipping)}</span>
               </div>
               <div className="flex justify-between" style={{ fontSize: '14px' }}>
                 <span className="text-muted-foreground">Tax (8%)</span>
-                <span>${tax.toFixed(2)}</span>
+                <span>{formatPrice(tax)}</span>
               </div>
               <div className="flex justify-between pt-2 border-t border-border" style={{ fontSize: '16px', fontWeight: '700' }}>
                 <span>Total</span>
-                <span className="text-primary">${finalTotal.toFixed(2)}</span>
+                <span className="text-primary">{formatPrice(finalTotal)}</span>
               </div>
             </div>
           </div>
@@ -148,7 +149,7 @@ export function CheckoutScreen() {
             fullWidth
             onClick={handleConfirmOrder}
           >
-            Confirm Order - ${finalTotal.toFixed(2)}
+            Confirm Order - {formatPrice(finalTotal)}
           </Button>
         </div>
       </div>

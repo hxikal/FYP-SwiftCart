@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import {type Product } from '../context/CartContext';
+import { formatPrice } from '../utils/formatPrice';
 
 
 interface ProductCardProps {
@@ -20,7 +21,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="p-3">
           <h3 className="line-clamp-2 mb-1" style={{ fontSize: '14px' }}>{product.name}</h3>
           <p className="text-primary" style={{ fontSize: '16px', fontWeight: '600' }}>
-            ${product.price.toFixed(2)}
+            {formatPrice(product.price)}
           </p>
         </div>
       </div>

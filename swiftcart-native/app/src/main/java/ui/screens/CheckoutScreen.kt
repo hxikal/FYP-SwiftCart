@@ -46,6 +46,7 @@ import ui.theme.SwiftCartPrimary
 import ui.theme.SwiftCartRadiusSm
 import ui.theme.SwiftCartScreenPadding
 import ui.theme.SwiftCartSectionPadding
+import ui.util.formatPrice
 
 @Composable
 fun CheckoutScreen(
@@ -116,7 +117,7 @@ fun CheckoutScreen(
                         .height(52.dp)
                 ) {
                     Text(
-                        text = "Confirm Order - $%.2f".format(finalTotal),
+                        text = "Confirm Order - ${formatPrice(finalTotal)}",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold
                     )
@@ -192,9 +193,9 @@ private fun OrderSummaryCard(
         )
         Spacer(modifier = Modifier.height(16.dp))
 
-        PriceRow(label = "Subtotal", value = "$%.2f".format(subtotal))
-        PriceRow(label = "Shipping", value = "$%.2f".format(shipping))
-        PriceRow(label = "Tax (8%)", value = "$%.2f".format(tax))
+        PriceRow(label = "Subtotal", value = formatPrice(subtotal))
+        PriceRow(label = "Shipping", value = formatPrice(shipping))
+        PriceRow(label = "Tax (8%)", value = formatPrice(tax))
 
         Spacer(modifier = Modifier.height(8.dp))
         Box(
@@ -212,7 +213,7 @@ private fun OrderSummaryCard(
         ) {
             Text(text = "Total", color = Color.Black, fontSize = 16.sp, fontWeight = FontWeight.Bold)
             Text(
-                text = "$%.2f".format(finalTotal),
+                text = formatPrice(finalTotal),
                 color = SwiftCartPrimary,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
@@ -259,7 +260,7 @@ private fun CheckoutItemRow(
             )
         }
         Text(
-            text = "$%.2f".format(item.subtotal),
+            text = formatPrice(item.subtotal),
             color = Color.Black,
             fontSize = 14.sp,
             fontWeight = FontWeight.SemiBold

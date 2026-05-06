@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -49,6 +48,7 @@ import ui.theme.SwiftCartPrimary
 import ui.theme.SwiftCartRadiusSm
 import ui.theme.SwiftCartScreenPadding
 import ui.theme.SwiftCartSectionPadding
+import ui.util.formatPrice
 
 @Composable
 fun ProductDetailScreen(
@@ -201,7 +201,7 @@ private fun ProductInfo(
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "$%.2f".format(product.price),
+            text = formatPrice(product.price),
             color = SwiftCartPrimary,
             fontSize = 28.sp,
             lineHeight = 34.sp,

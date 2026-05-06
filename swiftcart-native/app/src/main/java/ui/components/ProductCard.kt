@@ -31,6 +31,7 @@ import ui.theme.SwiftCartCardShape
 import ui.theme.SwiftCartMuted
 import ui.theme.SwiftCartMutedForeground
 import ui.theme.SwiftCartPrimary
+import ui.util.formatPrice
 
 @Composable
 fun ProductCard(
@@ -84,7 +85,7 @@ fun ProductCard(
                 modifier = Modifier
             )
             Text(
-                text = "$%.2f".format(product.price),
+                text = formatPrice(product.price),
                 color = SwiftCartPrimary,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,

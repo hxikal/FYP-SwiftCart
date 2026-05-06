@@ -4,6 +4,7 @@ import { ArrowLeft, ShoppingCart } from 'lucide-react';
 import { Button } from '../components/Button';
 import { useCart, type Product } from '../context/CartContext';
 import { getProductById } from '../data/products';
+import { formatPrice } from '../utils/formatPrice';
 import { motion } from 'motion/react';
 import { toast } from 'sonner';
 
@@ -121,7 +122,7 @@ export function ProductDetailScreen() {
 
             <div className="mb-6">
               <p className="text-primary" style={{ fontSize: '28px', fontWeight: '700' }}>
-                ${product.price.toFixed(2)}
+                {formatPrice(product.price)}
               </p>
             </div>
 
