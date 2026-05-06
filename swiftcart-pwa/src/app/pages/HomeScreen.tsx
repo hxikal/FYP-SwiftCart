@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Search, SlidersHorizontal, Sparkles } from 'lucide-react';
+import { Search, SlidersHorizontal } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { BottomNav } from '../components/BottomNav';
 import { getProducts } from '../data/products';
@@ -50,26 +50,19 @@ export function HomeScreen() {
 
   return (
     <div className="min-h-screen bg-background pb-28">
-      <div className="bg-[var(--brand-gradient)] pb-6 pt-5 text-white">
-        <div className="max-w-md mx-auto px-4">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="text-white/75" style={{ fontSize: '13px', fontWeight: 600 }}>SwiftCart</p>
-              <h1 className="mt-1" style={{ fontSize: '28px', fontWeight: 800, lineHeight: '34px' }}>
-                Premium picks for your day
-              </h1>
-            </div>
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15">
-              <Sparkles size={21} />
-            </div>
-          </div>
-          <p className="mt-3 max-w-[280px] text-white/80" style={{ fontSize: '14px', lineHeight: '21px' }}>
+      <div className="bg-[linear-gradient(180deg,#1d4ed8_0%,#2563eb_52%,#60a5fa_100%)] text-white">
+        <div className="max-w-md mx-auto px-4 py-[18px]">
+          <p className="text-white/80" style={{ fontSize: '13px', fontWeight: 600 }}>SwiftCart</p>
+          <h1 className="mt-1" style={{ fontSize: '28px', fontWeight: 800, lineHeight: '34px' }}>
+            Premium picks for your day
+          </h1>
+          <p className="mt-2 text-white/80" style={{ fontSize: '14px', lineHeight: '21px' }}>
             Browse curated essentials with fast checkout and offline-ready shopping.
           </p>
         </div>
       </div>
 
-      <div className="sticky top-0 z-10 -mt-5 px-4">
+      <div className="sticky top-0 z-10 mt-3 px-4">
         <div className="max-w-md mx-auto rounded-3xl border border-border bg-white p-3 shadow-[var(--soft-shadow)]">
           <div className="flex items-center gap-3">
             <div className="flex-1 relative">
