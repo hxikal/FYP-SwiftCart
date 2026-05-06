@@ -32,6 +32,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
@@ -51,7 +52,10 @@ import ui.theme.SwiftCartButtonHeight
 import ui.theme.SwiftCartMuted
 import ui.theme.SwiftCartMutedForeground
 import ui.theme.SwiftCartPrimary
+import ui.theme.SwiftCartPrimaryDark
+import ui.theme.SwiftCartPrimaryLight
 import ui.theme.SwiftCartScreenPadding
+import ui.theme.SwiftCartSoftBlue
 import ui.util.formatPrice
 
 @Composable
@@ -131,10 +135,10 @@ private fun CartHeader(
     modifier: Modifier = Modifier
 ) {
     Surface(
-        color = Color.White,
+        color = Color.Transparent,
         modifier = modifier
             .fillMaxWidth()
-            .border(width = 1.dp, color = SwiftCartBorder)
+            .background(Brush.horizontalGradient(listOf(SwiftCartPrimaryDark, SwiftCartPrimary, SwiftCartPrimaryLight)))
     ) {
         Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
             Text(
@@ -142,12 +146,12 @@ private fun CartHeader(
                 style = MaterialTheme.typography.titleMedium,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
-                color = Color.Black
+                color = Color.White
             )
             if (itemCount > 0) {
                 Text(
                     text = "$itemCount ${if (itemCount == 1) "item" else "items"}",
-                    color = SwiftCartMutedForeground,
+                    color = Color.White.copy(alpha = 0.82f),
                     fontSize = 13.sp,
                     modifier = Modifier.padding(top = 4.dp)
                 )
@@ -173,7 +177,7 @@ private fun EmptyCartState(
         Box(
             modifier = Modifier
                 .size(96.dp)
-                .background(SwiftCartMuted, RoundedCornerShape(48.dp)),
+                .background(SwiftCartSoftBlue, RoundedCornerShape(28.dp)),
             contentAlignment = Alignment.Center
         ) {
             ShoppingBagIcon(
@@ -248,13 +252,14 @@ private fun CartSummaryBar(
     onCheckoutClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Surface(
-        color = Color.White,
-        shadowElevation = 8.dp,
-        modifier = modifier
-            .fillMaxWidth()
-            .border(width = 1.dp, color = SwiftCartBorder)
-    ) {
+        Surface(
+            color = Color.White,
+            shadowElevation = 8.dp,
+            modifier = modifier
+                .padding(start = 16.dp, end = 16.dp, bottom = 12.dp)
+                .fillMaxWidth()
+                .border(width = 1.dp, color = SwiftCartBorder, shape = RoundedCornerShape(24.dp))
+        ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),

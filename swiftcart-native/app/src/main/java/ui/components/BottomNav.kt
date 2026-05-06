@@ -5,14 +5,14 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,6 +26,7 @@ import ui.theme.SwiftCartBottomNavHeight
 import ui.theme.SwiftCartDestructive
 import ui.theme.SwiftCartMutedForeground
 import ui.theme.SwiftCartPrimary
+import ui.theme.SwiftCartSoftBlue
 
 @Composable
 fun BottomNav(
@@ -38,21 +39,22 @@ fun BottomNav(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(SwiftCartBottomNavHeight)
             .navigationBarsPadding()
-            .background(Color.White)
-            .border(width = 1.dp, color = SwiftCartBorder)
+            .padding(horizontal = 16.dp, vertical = 12.dp)
+            .height(SwiftCartBottomNavHeight)
+            .background(Color.White, RoundedCornerShape(28.dp))
+            .border(width = 1.dp, color = SwiftCartBorder, shape = RoundedCornerShape(28.dp))
+            .padding(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         BottomNavTab(
             label = "Home",
-            icon = "⌂",
             selected = activeItem == BottomNavItem.Home,
             onClick = onHomeClick,
             modifier = Modifier.weight(1f)
         )
         BottomNavTab(
             label = "Cart",
-            icon = "Cart",
             selected = activeItem == BottomNavItem.Cart,
             badgeCount = cartCount,
             onClick = onCartClick,
@@ -69,7 +71,6 @@ enum class BottomNavItem {
 @Composable
 private fun BottomNavTab(
     label: String,
-    icon: String,
     selected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -77,27 +78,30 @@ private fun BottomNavTab(
 ) {
     val color = if (selected) SwiftCartPrimary else SwiftCartMutedForeground
 
-    Column(
+    Row(
         modifier = modifier
-            .height(SwiftCartBottomNavHeight)
+            .height(48.dp)
+            .background(
+                color = if (selected) SwiftCartSoftBlue else Color.Transparent,
+                shape = RoundedCornerShape(18.dp)
+            )
             .clickable(onClick = onClick),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Box(contentAlignment = Alignment.TopEnd) {
             Text(
-                text = icon,
+                text = label,
                 color = color,
-                fontSize = if (icon.length > 1) 13.sp else 24.sp,
-                fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.align(Alignment.Center)
+                fontSize = 13.sp,
+                fontWeight = FontWeight.SemiBold
             )
             if (badgeCount > 0) {
                 Box(
                     modifier = Modifier
-                        .offset(x = 14.dp, y = (-2).dp)
+                        .offset(x = 18.dp, y = (-10).dp)
                         .size(20.dp)
-                        .background(SwiftCartDestructive, CircleShape),
+                        .background(SwiftCartDestructive, RoundedCornerShape(50)),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
@@ -109,6 +113,5 @@ private fun BottomNavTab(
                 }
             }
         }
-        Text(text = label, color = color, fontSize = 12.sp, modifier = Modifier)
     }
 }

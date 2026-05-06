@@ -7,13 +7,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 val SwiftCartPrimary = Color(0xFF2563EB)
+val SwiftCartPrimaryDark = Color(0xFF1D4ED8)
+val SwiftCartPrimaryLight = Color(0xFF60A5FA)
 val SwiftCartSuccess = Color(0xFF16A34A)
-val SwiftCartBackground = Color(0xFFFFFFFF)
-val SwiftCartForeground = Color(0xFF030213)
+val SwiftCartBackground = Color(0xFFF7F9FC)
+val SwiftCartForeground = Color(0xFF111827)
 val SwiftCartMuted = Color(0xFFECECF0)
-val SwiftCartMutedForeground = Color(0xFF717182)
-val SwiftCartBorder = Color(0x1A000000)
-val SwiftCartDestructive = Color(0xFFD4183D)
+val SwiftCartSoftBlue = Color(0xFFEEF4FF)
+val SwiftCartMutedForeground = Color(0xFF64748B)
+val SwiftCartBorder = Color(0x14111827)
+val SwiftCartDestructive = Color(0xFFDC2626)
 
 val SwiftCartScreenPadding = 16.dp
 val SwiftCartSectionPadding = 24.dp
@@ -22,11 +25,12 @@ val SwiftCartButtonHeight = 48.dp
 val SwiftCartBottomNavHeight = 64.dp
 val SwiftCartRadiusSm = 8.dp
 val SwiftCartRadiusMd = 10.dp
-val SwiftCartRadiusLg = 12.dp
-val SwiftCartCardElevation = 1.dp
+val SwiftCartRadiusLg = 16.dp
+val SwiftCartRadiusXl = 24.dp
+val SwiftCartCardElevation = 4.dp
 
 val SwiftCartButtonShape = RoundedCornerShape(SwiftCartRadiusSm)
-val SwiftCartCardShape = RoundedCornerShape(SwiftCartRadiusLg)
+val SwiftCartCardShape = RoundedCornerShape(SwiftCartRadiusXl)
 
 object SwiftCartButtonDefaults {
     @Composable
@@ -37,8 +41,8 @@ object SwiftCartButtonDefaults {
 
     @Composable
     fun secondaryColors() = ButtonDefaults.buttonColors(
-        containerColor = SwiftCartMuted,
-        contentColor = SwiftCartForeground
+        containerColor = SwiftCartSoftBlue,
+        contentColor = SwiftCartPrimary
     )
 
     @Composable

@@ -51,7 +51,7 @@ export function OrderSuccessScreen() {
           }}
           className="mb-6"
         >
-          <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-24 h-24 bg-secondary rounded-[28px] flex items-center justify-center mx-auto mb-6 shadow-[var(--card-shadow)]">
             <CheckCircle size={60} className="text-primary" />
           </div>
         </motion.div>
@@ -61,7 +61,7 @@ export function OrderSuccessScreen() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <h1 className="mb-3" style={{ fontSize: '28px', fontWeight: '700' }}>
+          <h1 className="mb-3" style={{ fontSize: '28px', fontWeight: '800', lineHeight: '34px' }}>
             Order Placed Successfully!
           </h1>
 
@@ -69,7 +69,7 @@ export function OrderSuccessScreen() {
             Thank you for your purchase. Your order has been confirmed and will be shipped soon.
           </p>
 
-          <div className="bg-white rounded-xl p-6 shadow-sm mb-8 text-left">
+          <div className="bg-white rounded-3xl border border-border p-6 shadow-[var(--card-shadow)] mb-8 text-left">
             <div className="flex items-center justify-between mb-3">
               <span className="text-muted-foreground" style={{ fontSize: '14px' }}>
                 Order Number

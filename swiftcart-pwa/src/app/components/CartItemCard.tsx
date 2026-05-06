@@ -10,36 +10,39 @@ interface CartItemCardProps {
 
 export function CartItemCard({ item, onUpdateQuantity, onRemove }: CartItemCardProps) {
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm flex gap-3">
-      <div className="w-20 h-20 bg-muted rounded-lg overflow-hidden flex-shrink-0">
+    <div className="flex gap-3 rounded-3xl border border-border bg-white p-3 shadow-[var(--card-shadow)]">
+      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-2xl bg-muted">
         <img
           src={item.image}
           alt={item.name}
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
+          onError={(event) => {
+            event.currentTarget.style.display = 'none';
+          }}
         />
       </div>
 
       <div className="flex-1 flex flex-col">
-        <h3 className="mb-1" style={{ fontSize: '14px' }}>{item.name}</h3>
-        <p className="text-primary mb-2" style={{ fontSize: '16px', fontWeight: '600' }}>
+        <h3 className="line-clamp-2 text-foreground" style={{ fontSize: '14px', fontWeight: 700, lineHeight: '19px' }}>{item.name}</h3>
+        <p className="mt-1 text-primary" style={{ fontSize: '16px', fontWeight: '800' }}>
           {formatPrice(item.price)}
         </p>
 
         <div className="flex items-center justify-between mt-auto">
-          <div className="flex items-center gap-2 bg-muted rounded-lg">
+          <div className="flex items-center rounded-2xl bg-muted p-1">
             <button
               onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
-              className="p-2 hover:bg-border rounded-lg transition-colors"
+              className="rounded-xl bg-white p-1.5 shadow-sm transition-colors hover:bg-border"
               aria-label="Decrease quantity"
             >
               <Minus size={16} />
             </button>
-            <span className="w-8 text-center" style={{ fontSize: '14px', fontWeight: '500' }}>
+            <span className="w-9 text-center" style={{ fontSize: '14px', fontWeight: '700' }}>
               {item.quantity}
             </span>
             <button
               onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-              className="p-2 hover:bg-border rounded-lg transition-colors"
+              className="rounded-xl bg-white p-1.5 shadow-sm transition-colors hover:bg-border"
               aria-label="Increase quantity"
             >
               <Plus size={16} />
@@ -48,7 +51,7 @@ export function CartItemCard({ item, onUpdateQuantity, onRemove }: CartItemCardP
 
           <button
             onClick={() => onRemove(item.id)}
-            className="p-2 text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
+            className="rounded-2xl bg-destructive/10 p-2 text-destructive transition-colors hover:bg-destructive/15"
             aria-label="Remove item"
           >
             <Trash2 size={18} />

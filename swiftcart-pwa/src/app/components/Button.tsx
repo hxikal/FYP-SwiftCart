@@ -12,11 +12,11 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  const baseStyles = 'px-6 py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'px-6 py-3 rounded-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]';
 
   const variantStyles = {
-    primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
-    secondary: 'bg-muted text-foreground hover:bg-muted/80',
+    primary: 'bg-primary text-primary-foreground shadow-[0_12px_24px_rgba(37,99,235,0.22)] hover:bg-primary/90',
+    secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
     ghost: 'text-foreground hover:bg-muted',
   };
 

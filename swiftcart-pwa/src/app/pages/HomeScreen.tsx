@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Search, SlidersHorizontal } from 'lucide-react';
+import { Search, SlidersHorizontal, Sparkles } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { BottomNav } from '../components/BottomNav';
 import { getProducts } from '../data/products';
@@ -46,29 +46,48 @@ export function HomeScreen() {
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  const categories = ['All', 'Featured', 'New', 'Essentials'];
 
   return (
-    <div className="min-h-screen bg-background pb-20">
-      {/* Header */}
-      <div className="bg-white border-b border-border sticky top-0 z-10">
-        <div className="max-w-md mx-auto px-4 py-3">
+    <div className="min-h-screen bg-background pb-28">
+      <div className="bg-[var(--brand-gradient)] pb-6 pt-5 text-white">
+        <div className="max-w-md mx-auto px-4">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-white/75" style={{ fontSize: '13px', fontWeight: 600 }}>SwiftCart</p>
+              <h1 className="mt-1" style={{ fontSize: '28px', fontWeight: 800, lineHeight: '34px' }}>
+                Premium picks for your day
+              </h1>
+            </div>
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15">
+              <Sparkles size={21} />
+            </div>
+          </div>
+          <p className="mt-3 max-w-[280px] text-white/80" style={{ fontSize: '14px', lineHeight: '21px' }}>
+            Browse curated essentials with fast checkout and offline-ready shopping.
+          </p>
+        </div>
+      </div>
+
+      <div className="sticky top-0 z-10 -mt-5 px-4">
+        <div className="max-w-md mx-auto rounded-3xl border border-border bg-white p-3 shadow-[var(--soft-shadow)]">
           <div className="flex items-center gap-3">
             <div className="flex-1 relative">
               <Search
                 size={18}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
               />
               <input
                 type="text"
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-muted rounded-lg border-0 focus:ring-2 focus:ring-primary/20 outline-none"
+                className="w-full rounded-2xl border-0 bg-input-background py-3 pl-11 pr-4 outline-none focus:ring-2 focus:ring-primary/20"
                 style={{ fontSize: '14px' }}
               />
             </div>
             <button
-              className="p-2.5 bg-muted rounded-lg hover:bg-muted/80 transition-colors"
+              className="rounded-2xl bg-secondary p-3 text-primary transition-colors hover:bg-secondary/80"
               aria-label="Filter products"
             >
               <SlidersHorizontal size={20} />
@@ -77,11 +96,26 @@ export function HomeScreen() {
         </div>
       </div>
 
-      {/* Product Grid */}
-      <div className="max-w-md mx-auto px-4 py-4">
-        <h2 className="mb-4" style={{ fontSize: '18px', fontWeight: '600' }}>
-          All Products
-        </h2>
+      <div className="max-w-md mx-auto px-4 py-5">
+        <div className="mb-5 flex gap-2 overflow-x-auto pb-1">
+          {categories.map((category, index) => (
+            <span
+              key={category}
+              className={`shrink-0 rounded-full px-4 py-2 ${index === 0 ? 'bg-primary text-white' : 'bg-white text-muted-foreground border border-border'}`}
+              style={{ fontSize: '13px', fontWeight: 700 }}
+            >
+              {category}
+            </span>
+          ))}
+        </div>
+
+        <div className="mb-4 flex items-end justify-between">
+          <div>
+            <p className="text-muted-foreground" style={{ fontSize: '12px', fontWeight: 700 }}>CATALOG</p>
+            <h2 style={{ fontSize: '20px', fontWeight: '800' }}>All Products</h2>
+          </div>
+          <span className="text-muted-foreground" style={{ fontSize: '13px' }}>{filteredProducts.length} items</span>
+        </div>
 
         {isLoading && (
           <div className="text-center py-12 text-muted-foreground">
@@ -96,7 +130,7 @@ export function HomeScreen() {
         )}
 
         {!isLoading && !error && (
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             {filteredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}

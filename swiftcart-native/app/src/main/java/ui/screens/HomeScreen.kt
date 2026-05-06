@@ -36,6 +36,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.TextStyle
@@ -54,8 +55,12 @@ import ui.theme.SwiftCartButtonShape
 import ui.theme.SwiftCartGridGap
 import ui.theme.SwiftCartMuted
 import ui.theme.SwiftCartMutedForeground
+import ui.theme.SwiftCartPrimary
+import ui.theme.SwiftCartPrimaryDark
+import ui.theme.SwiftCartPrimaryLight
 import ui.theme.SwiftCartRadiusSm
 import ui.theme.SwiftCartScreenPadding
+import ui.theme.SwiftCartSoftBlue
 
 @Composable
 fun HomeScreen(
@@ -79,20 +84,56 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(bottom = SwiftCartBottomNavHeight)
+                .padding(bottom = SwiftCartBottomNavHeight + 24.dp)
                 .windowInsetsPadding(WindowInsets.navigationBars.only(WindowInsetsSides.Bottom))
         ) {
-            Surface(
-                color = Color.White,
-                shadowElevation = 0.dp,
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .border(width = 1.dp, color = SwiftCartBorder)
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(SwiftCartPrimaryDark, SwiftCartPrimary, SwiftCartPrimaryLight)
+                        )
+                    )
+                    .padding(horizontal = SwiftCartScreenPadding, vertical = 18.dp)
+            ) {
+                Text(
+                    text = "SwiftCart",
+                    color = Color.White.copy(alpha = 0.78f),
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = "Premium picks for your day",
+                    color = Color.White,
+                    fontSize = 28.sp,
+                    lineHeight = 34.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+                Text(
+                    text = "Browse curated essentials with fast checkout and offline-ready shopping.",
+                    color = Color.White.copy(alpha = 0.82f),
+                    fontSize = 14.sp,
+                    lineHeight = 21.sp,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+            }
+
+            Surface(
+                color = Color.White,
+                shadowElevation = 6.dp,
+                shape = RoundedCornerShape(24.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = SwiftCartScreenPadding)
+                    .padding(top = 12.dp)
+                    .border(width = 1.dp, color = SwiftCartBorder, shape = RoundedCornerShape(24.dp))
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = SwiftCartScreenPadding, vertical = 12.dp),
+                        .padding(10.dp),
                     horizontalArrangement = Arrangement.spacedBy(SwiftCartGridGap)
                 ) {
                     SearchField(
@@ -110,6 +151,27 @@ fun HomeScreen(
                     .weight(1f)
                     .padding(horizontal = SwiftCartScreenPadding, vertical = 16.dp)
             ) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(bottom = 16.dp)) {
+                    listOf("All", "Featured", "New", "Essentials").forEachIndexed { index, label ->
+                        Text(
+                            text = label,
+                            color = if (index == 0) Color.White else SwiftCartMutedForeground,
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier
+                                .background(
+                                    color = if (index == 0) SwiftCartPrimary else Color.White,
+                                    shape = RoundedCornerShape(50)
+                                )
+                                .border(
+                                    width = 1.dp,
+                                    color = if (index == 0) SwiftCartPrimary else SwiftCartBorder,
+                                    shape = RoundedCornerShape(50)
+                                )
+                                .padding(horizontal = 14.dp, vertical = 8.dp)
+                        )
+                    }
+                }
                 Text(
                     text = "All Products",
                     style = MaterialTheme.typography.titleMedium,
@@ -141,7 +203,7 @@ fun HomeScreen(
                             .fillMaxWidth()
                             .weight(1f)
                             .padding(top = 16.dp),
-                        contentPadding = PaddingValues(bottom = 16.dp),
+                        contentPadding = PaddingValues(bottom = 32.dp),
                         horizontalArrangement = Arrangement.spacedBy(SwiftCartGridGap),
                         verticalArrangement = Arrangement.spacedBy(SwiftCartGridGap)
                     ) {
@@ -209,7 +271,7 @@ private fun SearchField(
         ),
         modifier = modifier
             .heightIn(min = 44.dp)
-            .background(SwiftCartMuted, RoundedCornerShape(SwiftCartRadiusSm))
+            .background(Color(0xFFF8FAFC), RoundedCornerShape(18.dp))
             .padding(horizontal = 12.dp, vertical = 11.dp),
         decorationBox = { innerTextField ->
             Row(
@@ -247,7 +309,7 @@ private fun FilterButton(
         modifier = modifier
             .heightIn(min = 44.dp)
             .size(width = 48.dp, height = 44.dp),
-        shape = SwiftCartButtonShape,
+        shape = RoundedCornerShape(18.dp),
         elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp, pressedElevation = 0.dp)
     ) {
         FilterIcon(color = Color.Black, modifier = Modifier.size(20.dp))

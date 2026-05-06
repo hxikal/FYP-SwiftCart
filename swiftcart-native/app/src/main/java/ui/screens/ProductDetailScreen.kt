@@ -29,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -48,6 +49,7 @@ import ui.theme.SwiftCartPrimary
 import ui.theme.SwiftCartRadiusSm
 import ui.theme.SwiftCartScreenPadding
 import ui.theme.SwiftCartSectionPadding
+import ui.theme.SwiftCartSoftBlue
 import ui.util.formatPrice
 
 @Composable
@@ -156,7 +158,9 @@ private fun ProductImage(
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .padding(horizontal = SwiftCartScreenPadding, vertical = 12.dp)
             .height(320.dp)
+            .clip(RoundedCornerShape(28.dp))
             .background(SwiftCartMuted),
         contentAlignment = Alignment.Center
     ) {
@@ -250,7 +254,12 @@ private fun FeatureText(text: String) {
             .padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Text(text = "*", color = SwiftCartPrimary, fontSize = 14.sp)
+        Box(
+            modifier = Modifier
+                .padding(top = 7.dp)
+                .size(8.dp)
+                .background(SwiftCartPrimary, RoundedCornerShape(50))
+        )
         Text(
             text = text,
             color = SwiftCartMutedForeground,

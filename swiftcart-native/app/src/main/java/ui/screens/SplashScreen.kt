@@ -79,7 +79,7 @@ fun SplashScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "ShopHub",
+                text = "SwiftCart",
                 color = Color.White,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold
@@ -88,7 +88,7 @@ fun SplashScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "Your Shopping Companion",
+                text = "Premium shopping companion",
                 color = Color.White.copy(alpha = 0.85f),
                 fontSize = 14.sp
             )

@@ -56,7 +56,7 @@ export function ProductDetailScreen() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-background">
         <p className="text-muted-foreground">Loading product...</p>
       </div>
     );
@@ -64,8 +64,8 @@ export function ProductDetailScreen() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen flex items-center justify-center bg-background px-4">
+        <div className="rounded-3xl border border-border bg-white p-6 text-center shadow-[var(--card-shadow)]">
           <p className="text-muted-foreground mb-4">
             {error || 'Product not found'}
           </p>
@@ -83,51 +83,58 @@ export function ProductDetailScreen() {
     });
   };
 
+  const features = [
+    'High quality materials and construction',
+    'Fast and reliable shipping',
+    '30-day money-back guarantee',
+    'Customer support available 24/7',
+  ];
+
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="bg-white border-b border-border sticky top-0 z-10">
+    <div className="min-h-screen bg-background pb-28">
+      <div className="sticky top-0 z-10 bg-background/90 backdrop-blur">
         <div className="max-w-md mx-auto px-4 py-3 flex items-center gap-3">
           <button
             onClick={() => navigate(-1)}
-            className="p-2 hover:bg-muted rounded-lg transition-colors"
+            className="rounded-2xl bg-white p-2 shadow-sm transition-colors hover:bg-muted"
             aria-label="Go back"
           >
             <ArrowLeft size={20} />
           </button>
-          <h1 style={{ fontSize: '18px', fontWeight: '600' }}>Product Details</h1>
+          <h1 style={{ fontSize: '18px', fontWeight: '700' }}>Product Details</h1>
         </div>
       </div>
 
       <div className="max-w-md mx-auto">
-        {/* Product Image */}
-        <div className="aspect-square bg-muted overflow-hidden">
+        <div className="mx-4 mt-2 aspect-square overflow-hidden rounded-[28px] bg-muted shadow-[var(--card-shadow)]">
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
+            onError={(event) => {
+              event.currentTarget.style.display = 'none';
+            }}
           />
         </div>
 
-        {/* Product Info */}
-        <div className="p-6">
+        <div className="p-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <h2 className="mb-3" style={{ fontSize: '24px', fontWeight: '700' }}>
-              {product.name}
-            </h2>
-
-            <div className="mb-6">
-              <p className="text-primary" style={{ fontSize: '28px', fontWeight: '700' }}>
+            <div className="rounded-3xl border border-border bg-white p-5 shadow-[var(--card-shadow)]">
+              <p className="mb-2 text-muted-foreground" style={{ fontSize: '12px', fontWeight: 700 }}>PRODUCT DETAIL</p>
+              <h2 style={{ fontSize: '24px', fontWeight: '800', lineHeight: '31px' }}>
+                {product.name}
+              </h2>
+              <p className="mt-3 text-primary" style={{ fontSize: '30px', fontWeight: '800' }}>
                 {formatPrice(product.price)}
               </p>
             </div>
 
-            <div className="mb-6">
-              <h3 className="mb-2" style={{ fontSize: '16px', fontWeight: '600' }}>
+            <div className="mt-4 rounded-3xl border border-border bg-white p-5 shadow-[var(--card-shadow)]">
+              <h3 className="mb-2" style={{ fontSize: '16px', fontWeight: '700' }}>
                 Description
               </h3>
               <p className="text-muted-foreground leading-relaxed" style={{ fontSize: '14px' }}>
@@ -135,34 +142,23 @@ export function ProductDetailScreen() {
               </p>
             </div>
 
-            <div className="space-y-2">
-              <h3 className="mb-2" style={{ fontSize: '16px', fontWeight: '600' }}>
+            <div className="mt-4 rounded-3xl border border-border bg-white p-5 shadow-[var(--card-shadow)]">
+              <h3 className="mb-3" style={{ fontSize: '16px', fontWeight: '700' }}>
                 Features
               </h3>
-              <ul className="space-y-2 text-muted-foreground" style={{ fontSize: '14px' }}>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>High quality materials and construction</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Fast and reliable shipping</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>30-day money-back guarantee</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Customer support available 24/7</span>
-                </li>
+              <ul className="space-y-3 text-muted-foreground" style={{ fontSize: '14px' }}>
+                {features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-primary" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </motion.div>
         </div>
 
-        {/* Fixed Bottom Action */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-border p-4 shadow-lg">
+        <div className="fixed bottom-0 left-0 right-0 border-t border-border bg-white/95 p-4 pb-[calc(16px+env(safe-area-inset-bottom))] shadow-[0_-12px_32px_rgba(15,23,42,0.10)] backdrop-blur">
           <div className="max-w-md mx-auto">
             <Button
               fullWidth

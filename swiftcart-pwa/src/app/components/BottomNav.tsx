@@ -11,31 +11,31 @@ export function BottomNav() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-border">
-      <div className="max-w-md mx-auto flex">
+    <nav className="fixed bottom-0 left-0 right-0 z-30 px-4 pb-[calc(12px+env(safe-area-inset-bottom))]">
+      <div className="max-w-md mx-auto flex rounded-3xl border border-border bg-white/95 p-2 shadow-[0_16px_40px_rgba(15,23,42,0.16)] backdrop-blur">
         <Link
           to="/"
-          className={`flex-1 flex flex-col items-center justify-center py-3 transition-colors ${
-            isActive('/') ? 'text-primary' : 'text-muted-foreground'
+          className={`flex-1 flex items-center justify-center gap-2 rounded-2xl py-3 transition-colors ${
+            isActive('/') ? 'bg-secondary text-primary' : 'text-muted-foreground'
           }`}
         >
-          <Home size={24} />
-          <span className="mt-1" style={{ fontSize: '12px' }}>Home</span>
+          <Home size={20} />
+          <span style={{ fontSize: '12px', fontWeight: 600 }}>Home</span>
         </Link>
 
         <Link
           to="/cart"
-          className={`flex-1 flex flex-col items-center justify-center py-3 transition-colors relative ${
-            isActive('/cart') ? 'text-primary' : 'text-muted-foreground'
+          className={`flex-1 flex items-center justify-center gap-2 rounded-2xl py-3 transition-colors relative ${
+            isActive('/cart') ? 'bg-secondary text-primary' : 'text-muted-foreground'
           }`}
         >
-          <ShoppingCart size={24} />
+          <ShoppingCart size={20} />
           {cartCount > 0 && (
-            <span className="absolute top-2 right-1/2 translate-x-3 bg-destructive text-destructive-foreground rounded-full w-5 h-5 flex items-center justify-center" style={{ fontSize: '11px' }}>
+            <span className="absolute top-1 right-1/2 translate-x-8 bg-destructive text-destructive-foreground rounded-full w-5 h-5 flex items-center justify-center" style={{ fontSize: '11px', fontWeight: 700 }}>
               {cartCount}
             </span>
           )}
-          <span className="mt-1" style={{ fontSize: '12px' }}>Cart</span>
+          <span style={{ fontSize: '12px', fontWeight: 600 }}>Cart</span>
         </Link>
       </div>
     </nav>

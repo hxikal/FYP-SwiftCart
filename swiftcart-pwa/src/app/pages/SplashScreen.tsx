@@ -15,14 +15,14 @@ export function SplashScreen() {
   }, [navigate]);
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-primary to-primary/80">
+    <div className="h-screen flex flex-col items-center justify-center bg-[var(--brand-gradient)]">
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="flex flex-col items-center"
       >
-        <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center mb-6 shadow-2xl">
+        <div className="w-24 h-24 bg-white rounded-[28px] flex items-center justify-center mb-6 shadow-2xl">
           <ShoppingBag size={48} className="text-primary" />
         </div>
 
@@ -33,7 +33,7 @@ export function SplashScreen() {
           className="text-white mb-2"
           style={{ fontSize: '32px', fontWeight: '700' }}
         >
-          ShopHub
+          SwiftCart
         </motion.h1>
 
         <motion.p
@@ -43,7 +43,7 @@ export function SplashScreen() {
           className="text-white/90"
           style={{ fontSize: '14px' }}
         >
-          Your Shopping Companion
+          Premium shopping companion
         </motion.p>
       </motion.div>
 

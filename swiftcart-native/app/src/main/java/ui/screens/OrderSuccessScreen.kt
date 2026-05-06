@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -34,6 +33,7 @@ import ui.theme.SwiftCartCardShape
 import ui.theme.SwiftCartMutedForeground
 import ui.theme.SwiftCartPrimary
 import ui.theme.SwiftCartScreenPadding
+import ui.theme.SwiftCartSoftBlue
 
 @Composable
 fun OrderSuccessScreen(
@@ -51,7 +51,7 @@ fun OrderSuccessScreen(
         Box(
             modifier = Modifier
                 .size(96.dp)
-                .background(Color(0x1A2563EB), CircleShape),
+                .background(SwiftCartSoftBlue, RoundedCornerShape(28.dp)),
             contentAlignment = Alignment.Center
         ) {
             Text(
@@ -65,7 +65,7 @@ fun OrderSuccessScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "Order placed successfully",
+            text = "Order Placed Successfully!",
             color = Color.Black,
             fontSize = 28.sp,
             lineHeight = 34.sp,
