@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import ui.screens.CartScreen
 import ui.screens.CheckoutScreen
 import ui.screens.HomeScreen
@@ -26,9 +27,11 @@ sealed interface SwiftCartRoute {
 
 @Composable
 fun NavGraph(
-    productViewModel: ProductViewModel = remember { ProductViewModel() },
     cartViewModel: CartViewModel = remember { CartViewModel() }
 ) {
+    val appContext = LocalContext.current.applicationContext
+    val productViewModel = remember(appContext) { ProductViewModel(appContext) }
+
     LaunchedEffect(Unit) {
         productViewModel.loadProducts()
     }
@@ -46,6 +49,7 @@ fun NavGraph(
         SwiftCartRoute.Home -> HomeScreen(
             products = productViewModel.products,
             cartCount = cartViewModel.items.sumOf { it.quantity },
+            isOfflineMode = productViewModel.isFromCache,
             onProductClick = { productId -> route = SwiftCartRoute.ProductDetail(productId) },
             onCartClick = { route = SwiftCartRoute.Cart }
         )

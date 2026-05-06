@@ -56,6 +56,7 @@ import ui.theme.SwiftCartScreenPadding
 fun HomeScreen(
     products: List<Product>,
     cartCount: Int,
+    isOfflineMode: Boolean = false,
     onProductClick: (String) -> Unit,
     onCartClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -110,6 +111,10 @@ fun HomeScreen(
                     fontWeight = FontWeight.SemiBold
                 )
 
+                if (isOfflineMode) {
+                    OfflineModeLabel()
+                }
+
                 if (filteredProducts.isEmpty()) {
                     Box(
                         modifier = Modifier
@@ -151,6 +156,32 @@ fun HomeScreen(
             onHomeClick = {},
             onCartClick = onCartClick,
             modifier = Modifier.align(androidx.compose.ui.Alignment.BottomCenter)
+        )
+    }
+}
+
+@Composable
+private fun OfflineModeLabel(
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        color = SwiftCartMuted,
+        shape = RoundedCornerShape(SwiftCartRadiusSm),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(top = 10.dp)
+            .border(
+                width = 1.dp,
+                color = SwiftCartBorder,
+                shape = RoundedCornerShape(SwiftCartRadiusSm)
+            )
+    ) {
+        Text(
+            text = "Offline Mode - Showing cached products",
+            color = SwiftCartMutedForeground,
+            fontSize = 12.sp,
+            lineHeight = 16.sp,
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
         )
     }
 }
