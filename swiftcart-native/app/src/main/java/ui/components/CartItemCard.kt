@@ -18,15 +18,22 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import data.model.CartItem
 import ui.theme.SwiftCartCardElevation
 import ui.theme.SwiftCartCardShape
@@ -56,18 +63,7 @@ fun CartItemCard(
                 .padding(16.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Box(
-                modifier = Modifier
-                    .size(80.dp)
-                    .background(SwiftCartMuted, RoundedCornerShape(8.dp)),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = item.product.imageUrl.ifBlank { "Image" },
-                    color = SwiftCartMutedForeground,
-                    fontSize = 11.sp
-                )
-            }
+            CartProductThumbnail(item = item)
 
             Column(
                 modifier = Modifier
@@ -112,6 +108,42 @@ fun CartItemCard(
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun CartProductThumbnail(
+    item: CartItem,
+    modifier: Modifier = Modifier
+) {
+    var imageFailed by remember(item.product.imageUrl) {
+        mutableStateOf(item.product.imageUrl.isBlank())
+    }
+    val shape = RoundedCornerShape(8.dp)
+
+    Box(
+        modifier = modifier
+            .size(80.dp)
+            .clip(shape)
+            .background(SwiftCartMuted),
+        contentAlignment = Alignment.Center
+    ) {
+        AsyncImage(
+            model = item.product.imageUrl.ifBlank { null },
+            contentDescription = item.product.name,
+            contentScale = ContentScale.Crop,
+            onError = { imageFailed = true },
+            onSuccess = { imageFailed = false },
+            modifier = Modifier.matchParentSize()
+        )
+
+        if (imageFailed) {
+            Text(
+                text = "Image unavailable",
+                color = SwiftCartMutedForeground,
+                fontSize = 10.sp
+            )
         }
     }
 }

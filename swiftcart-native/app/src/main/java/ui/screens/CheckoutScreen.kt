@@ -8,11 +8,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -26,13 +32,20 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import data.model.CartItem
 import ui.theme.SwiftCartBackground
 import ui.theme.SwiftCartBorder
@@ -74,7 +87,8 @@ fun CheckoutScreen(
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
                     .padding(horizontal = SwiftCartScreenPadding, vertical = SwiftCartSectionPadding)
-                    .padding(bottom = 112.dp),
+                    .padding(bottom = 112.dp)
+                    .windowInsetsPadding(WindowInsets.navigationBars.only(WindowInsetsSides.Bottom)),
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 if (items.isEmpty()) {
@@ -104,6 +118,7 @@ fun CheckoutScreen(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
+                    .navigationBarsPadding()
                     .border(width = 1.dp, color = SwiftCartBorder)
             ) {
                 Button(
@@ -232,18 +247,7 @@ private fun CheckoutItemRow(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.Top
     ) {
-        Box(
-            modifier = Modifier
-                .size(64.dp)
-                .background(SwiftCartMuted, RoundedCornerShape(SwiftCartRadiusSm)),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = item.product.imageUrl.ifBlank { "Image" },
-                color = SwiftCartMutedForeground,
-                fontSize = 10.sp
-            )
-        }
+        CheckoutProductThumbnail(item = item)
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = item.product.name,
@@ -265,6 +269,42 @@ private fun CheckoutItemRow(
             fontSize = 14.sp,
             fontWeight = FontWeight.SemiBold
         )
+    }
+}
+
+@Composable
+private fun CheckoutProductThumbnail(
+    item: CartItem,
+    modifier: Modifier = Modifier
+) {
+    var imageFailed by remember(item.product.imageUrl) {
+        mutableStateOf(item.product.imageUrl.isBlank())
+    }
+    val shape = RoundedCornerShape(SwiftCartRadiusSm)
+
+    Box(
+        modifier = modifier
+            .size(80.dp)
+            .clip(shape)
+            .background(SwiftCartMuted),
+        contentAlignment = Alignment.Center
+    ) {
+        AsyncImage(
+            model = item.product.imageUrl.ifBlank { null },
+            contentDescription = item.product.name,
+            contentScale = ContentScale.Crop,
+            onError = { imageFailed = true },
+            onSuccess = { imageFailed = false },
+            modifier = Modifier.matchParentSize()
+        )
+
+        if (imageFailed) {
+            Text(
+                text = "Image unavailable",
+                color = SwiftCartMutedForeground,
+                fontSize = 10.sp
+            )
+        }
     }
 }
 
