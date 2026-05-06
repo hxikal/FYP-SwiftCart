@@ -24,14 +24,20 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import data.model.Product
 import ui.theme.SwiftCartBackground
 import ui.theme.SwiftCartBorder
@@ -143,18 +149,33 @@ private fun ProductImage(
     product: Product,
     modifier: Modifier = Modifier
 ) {
+    var imageFailed by remember(product.imageUrl) {
+        mutableStateOf(product.imageUrl.isBlank())
+    }
+
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .aspectRatio(1f)
+            .height(320.dp)
             .background(SwiftCartMuted),
         contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = product.imageUrl.ifBlank { product.name },
-            color = SwiftCartMutedForeground,
-            fontSize = 16.sp
+        AsyncImage(
+            model = product.imageUrl.ifBlank { null },
+            contentDescription = product.name,
+            contentScale = ContentScale.Crop,
+            onError = { imageFailed = true },
+            onSuccess = { imageFailed = false },
+            modifier = Modifier.fillMaxSize()
         )
+
+        if (imageFailed) {
+            Text(
+                text = "Image unavailable",
+                color = SwiftCartMutedForeground,
+                fontSize = 16.sp
+            )
+        }
     }
 }
 
