@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="SwiftCart">
+  <rect width="512" height="512" rx="112" fill="#2563eb"/>
+  <path fill="#fff" d="M151 173h35l31 145h158l30-102H231l-8-39h214c14 0 24 13 20 26l-42 142c-4 12-15 20-28 20H197c-14 0-26-10-29-24l-31-146h-38v-22c0-12 10-22 22-22h30z"/>
+  <circle cx="228" cy="402" r="30" fill="#fff"/>
+  <circle cx="362" cy="402" r="30" fill="#fff"/>
+  <path fill="#93c5fd" d="M238 119h38v82h72L255 300l27-72h-70l26-109z"/>
+</svg>
