@@ -10,12 +10,12 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import ui.theme.SwiftCartBackground
-import ui.theme.SwiftCartDestructive
-import ui.theme.SwiftCartForeground
-import ui.theme.SwiftCartMuted
-import ui.theme.SwiftCartMutedForeground
-import ui.theme.SwiftCartPrimary
+import com.fyp.swiftcartnative.ui.theme.SwiftCartBackground
+import com.fyp.swiftcartnative.ui.theme.SwiftCartDestructive
+import com.fyp.swiftcartnative.ui.theme.SwiftCartForeground
+import com.fyp.swiftcartnative.ui.theme.SwiftCartMuted
+import com.fyp.swiftcartnative.ui.theme.SwiftCartMutedForeground
+import com.fyp.swiftcartnative.ui.theme.SwiftCartPrimary
 
 private val DarkColorScheme = darkColorScheme(
     primary = SwiftCartPrimary,

@@ -54,3 +54,8 @@ Thumbs.db
 tmp/
 temp/
 *.log
+
+# PWA generated files
+swiftcart-pwa/dev-dist/
+
+swiftcart-native/app/google-services.json
