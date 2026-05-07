@@ -17,7 +17,7 @@ function mapProduct(id: string, data: Record<string, unknown>): Product {
     id,
     name: String(data.name ?? ''),
     price: Number(data.price ?? 0),
-    image: String(data.image ?? ''),
+    image: String(data.imageUrl ?? data.image ?? ''),
     description: String(data.description ?? ''),
   };
 }
