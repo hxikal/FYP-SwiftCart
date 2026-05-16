@@ -26,7 +26,7 @@ export function CheckoutScreen() {
 
   return (
     <div className="min-h-screen bg-background pb-32">
-      <div className="sticky top-0 z-10 bg-background/90 backdrop-blur">
+      <div className="android-stable-surface sticky top-0 z-10">
         <div className="max-w-md mx-auto px-4 py-3 flex items-center gap-3">
           <button
             onClick={() => navigate(-1)}
@@ -44,9 +44,9 @@ export function CheckoutScreen() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="space-y-4"
+          className="android-disable-touch-transform space-y-4"
         >
-          <section className="rounded-3xl border border-border bg-white p-4 shadow-[var(--card-shadow)]">
+          <section className="android-stable-card rounded-3xl border border-border p-4">
             <h2 className="mb-4" style={{ fontSize: '17px', fontWeight: '800' }}>
               Order Summary
             </h2>
@@ -54,11 +54,13 @@ export function CheckoutScreen() {
             <div className="space-y-3 mb-4">
               {cart.map(item => (
                 <div key={item.id} className="flex items-start gap-3">
-                  <div className="w-20 h-20 bg-muted rounded-2xl overflow-hidden flex-shrink-0">
+                  <div className="android-media-frame w-20 h-20 rounded-2xl flex-shrink-0">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover"
+                      className="android-media-img"
+                      loading="lazy"
+                      decoding="async"
                       onError={(event) => {
                         event.currentTarget.style.display = 'none';
                       }}
@@ -90,7 +92,7 @@ export function CheckoutScreen() {
             </div>
           </section>
 
-          <section className="rounded-3xl border border-border bg-white p-4 shadow-[var(--card-shadow)]">
+          <section className="android-stable-card rounded-3xl border border-border p-4">
             <div className="mb-4 flex items-center gap-2">
               <CreditCard size={18} className="text-primary" />
               <h2 style={{ fontSize: '16px', fontWeight: '800' }}>Payment Method</h2>
@@ -108,7 +110,7 @@ export function CheckoutScreen() {
             </div>
           </section>
 
-          <section className="rounded-3xl border border-border bg-white p-4 shadow-[var(--card-shadow)]">
+          <section className="android-stable-card rounded-3xl border border-border p-4">
             <div className="mb-4 flex items-center gap-2">
               <MapPin size={18} className="text-primary" />
               <h2 style={{ fontSize: '16px', fontWeight: '800' }}>Shipping Address</h2>
@@ -124,7 +126,7 @@ export function CheckoutScreen() {
         </motion.div>
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 border-t border-border bg-white/95 p-4 pb-[calc(16px+env(safe-area-inset-bottom))] shadow-[0_-12px_32px_rgba(15,23,42,0.10)] backdrop-blur">
+      <div className="android-stable-fixed fixed bottom-0 left-0 right-0 border-t border-border p-4 pb-[calc(16px+env(safe-area-inset-bottom))]">
         <div className="max-w-md mx-auto">
           <Button fullWidth onClick={handleConfirmOrder}>
             Confirm Order - {formatPrice(finalTotal)}

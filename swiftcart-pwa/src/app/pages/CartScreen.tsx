@@ -16,14 +16,14 @@ export function CartScreen() {
   if (cart.length === 0) {
     return (
       <div className="min-h-screen bg-background pb-28">
-        <div className="border-b border-border bg-white/90 backdrop-blur">
+        <div className="android-stable-surface border-b border-border">
           <div className="max-w-md mx-auto px-4 py-3">
             <h1 style={{ fontSize: '18px', fontWeight: '700' }}>Shopping Cart</h1>
           </div>
         </div>
 
         <div className="max-w-md mx-auto flex flex-col items-center justify-center px-4" style={{ minHeight: 'calc(100vh - 220px)' }}>
-          <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-[28px] bg-secondary shadow-[var(--card-shadow)]">
+          <div className="android-stable-card mb-6 flex h-24 w-24 items-center justify-center rounded-[28px] bg-secondary">
             <ShoppingBag size={40} className="text-muted-foreground" />
           </div>
           <h2 className="mb-2" style={{ fontSize: '20px', fontWeight: '800' }}>
@@ -65,7 +65,7 @@ export function CartScreen() {
       </div>
 
       <div className="fixed bottom-24 left-0 right-0 px-4">
-        <div className="max-w-md mx-auto space-y-3 rounded-3xl border border-border bg-white p-4 shadow-[0_16px_40px_rgba(15,23,42,0.14)]">
+        <div className="android-stable-fixed max-w-md mx-auto space-y-3 rounded-3xl border border-border p-4">
           <div className="flex items-center justify-between">
             <span className="text-muted-foreground" style={{ fontSize: '14px' }}>
               Subtotal ({itemCount} {itemCount === 1 ? 'item' : 'items'})

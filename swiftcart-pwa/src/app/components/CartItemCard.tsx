@@ -10,12 +10,14 @@ interface CartItemCardProps {
 
 export function CartItemCard({ item, onUpdateQuantity, onRemove }: CartItemCardProps) {
   return (
-    <div className="flex gap-3 rounded-3xl border border-border bg-white p-3 shadow-[var(--card-shadow)]">
-      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-2xl bg-muted">
+    <div className="android-stable-card flex gap-3 rounded-3xl border border-border p-3">
+      <div className="android-media-frame h-24 w-24 flex-shrink-0 rounded-2xl">
         <img
           src={item.image}
           alt={item.name}
-          className="h-full w-full object-cover"
+          className="android-media-img"
+          loading="lazy"
+          decoding="async"
           onError={(event) => {
             event.currentTarget.style.display = 'none';
           }}

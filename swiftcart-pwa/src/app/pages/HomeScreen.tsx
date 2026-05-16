@@ -63,7 +63,7 @@ export function HomeScreen() {
       </div>
 
       <div className="sticky top-0 z-10 mt-3 px-4">
-        <div className="max-w-md mx-auto rounded-3xl border border-border bg-white p-3 shadow-[var(--soft-shadow)]">
+        <div className="android-stable-surface max-w-md mx-auto rounded-3xl border border-border p-3 shadow-[var(--soft-shadow)]">
           <div className="flex items-center gap-3">
             <div className="flex-1 relative">
               <Search
@@ -90,7 +90,7 @@ export function HomeScreen() {
       </div>
 
       <div className="max-w-md mx-auto px-4 py-5">
-        <div className="mb-5 flex gap-2 overflow-x-auto pb-1">
+        <div className="android-scroll-row mb-5 flex gap-2 overflow-x-auto pb-1">
           {categories.map((category, index) => (
             <span
               key={category}

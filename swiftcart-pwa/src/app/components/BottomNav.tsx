@@ -12,7 +12,7 @@ export function BottomNav() {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-30 px-4 pb-[calc(12px+env(safe-area-inset-bottom))]">
-      <div className="max-w-md mx-auto flex rounded-3xl border border-border bg-white/95 p-2 shadow-[0_16px_40px_rgba(15,23,42,0.16)] backdrop-blur">
+      <div className="android-stable-fixed max-w-md mx-auto flex rounded-3xl border border-border p-2">
         <Link
           to="/"
           className={`flex-1 flex items-center justify-center gap-2 rounded-2xl py-3 transition-colors ${
@@ -31,7 +31,7 @@ export function BottomNav() {
         >
           <ShoppingCart size={20} />
           {cartCount > 0 && (
-            <span className="absolute top-1 right-1/2 translate-x-8 bg-destructive text-destructive-foreground rounded-full w-5 h-5 flex items-center justify-center" style={{ fontSize: '11px', fontWeight: 700 }}>
+            <span className="absolute top-1 right-[calc(50%_-_32px)] bg-destructive text-destructive-foreground rounded-full w-5 h-5 flex items-center justify-center" style={{ fontSize: '11px', fontWeight: 700 }}>
               {cartCount}
             </span>
           )}

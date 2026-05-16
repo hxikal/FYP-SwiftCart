@@ -11,12 +11,14 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link to={`/product/${product.id}`} className="block">
-      <div className="group overflow-hidden rounded-3xl border border-border bg-white shadow-[var(--card-shadow)] transition-all hover:-translate-y-0.5 hover:shadow-[var(--soft-shadow)]">
-        <div className="m-2 aspect-square overflow-hidden rounded-2xl bg-muted">
+      <div className="android-stable-card desktop-card-hover overflow-hidden rounded-3xl border border-border">
+        <div className="android-media-frame m-2 aspect-square rounded-2xl">
           <img
             src={product.image}
             alt={product.name}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="android-media-img"
+            loading="lazy"
+            decoding="async"
             onError={(event) => {
               event.currentTarget.style.display = 'none';
             }}

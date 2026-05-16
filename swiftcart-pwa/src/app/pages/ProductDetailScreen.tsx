@@ -65,7 +65,7 @@ export function ProductDetailScreen() {
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background px-4">
-        <div className="rounded-3xl border border-border bg-white p-6 text-center shadow-[var(--card-shadow)]">
+        <div className="android-stable-card rounded-3xl border border-border p-6 text-center">
           <p className="text-muted-foreground mb-4">
             {error || 'Product not found'}
           </p>
@@ -92,7 +92,7 @@ export function ProductDetailScreen() {
 
   return (
     <div className="min-h-screen bg-background pb-28">
-      <div className="sticky top-0 z-10 bg-background/90 backdrop-blur">
+      <div className="android-stable-surface sticky top-0 z-10">
         <div className="max-w-md mx-auto px-4 py-3 flex items-center gap-3">
           <button
             onClick={() => navigate(-1)}
@@ -106,11 +106,12 @@ export function ProductDetailScreen() {
       </div>
 
       <div className="max-w-md mx-auto">
-        <div className="mx-4 mt-2 aspect-square overflow-hidden rounded-[28px] bg-muted shadow-[var(--card-shadow)]">
+        <div className="android-media-frame mx-4 mt-2 aspect-square rounded-[28px] shadow-[var(--card-shadow)]">
           <img
             src={product.image}
             alt={product.name}
-            className="h-full w-full object-cover"
+            className="android-media-img"
+            decoding="async"
             onError={(event) => {
               event.currentTarget.style.display = 'none';
             }}
@@ -122,8 +123,9 @@ export function ProductDetailScreen() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
+            className="android-disable-touch-transform"
           >
-            <div className="rounded-3xl border border-border bg-white p-5 shadow-[var(--card-shadow)]">
+            <div className="android-stable-card rounded-3xl border border-border p-5">
               <p className="mb-2 text-muted-foreground" style={{ fontSize: '12px', fontWeight: 700 }}>PRODUCT DETAIL</p>
               <h2 style={{ fontSize: '24px', fontWeight: '800', lineHeight: '31px' }}>
                 {product.name}
@@ -133,7 +135,7 @@ export function ProductDetailScreen() {
               </p>
             </div>
 
-            <div className="mt-4 rounded-3xl border border-border bg-white p-5 shadow-[var(--card-shadow)]">
+            <div className="android-stable-card mt-4 rounded-3xl border border-border p-5">
               <h3 className="mb-2" style={{ fontSize: '16px', fontWeight: '700' }}>
                 Description
               </h3>
@@ -142,7 +144,7 @@ export function ProductDetailScreen() {
               </p>
             </div>
 
-            <div className="mt-4 rounded-3xl border border-border bg-white p-5 shadow-[var(--card-shadow)]">
+            <div className="android-stable-card mt-4 rounded-3xl border border-border p-5">
               <h3 className="mb-3" style={{ fontSize: '16px', fontWeight: '700' }}>
                 Features
               </h3>
@@ -158,7 +160,7 @@ export function ProductDetailScreen() {
           </motion.div>
         </div>
 
-        <div className="fixed bottom-0 left-0 right-0 border-t border-border bg-white/95 p-4 pb-[calc(16px+env(safe-area-inset-bottom))] shadow-[0_-12px_32px_rgba(15,23,42,0.10)] backdrop-blur">
+        <div className="android-stable-fixed fixed bottom-0 left-0 right-0 border-t border-border p-4 pb-[calc(16px+env(safe-area-inset-bottom))]">
           <div className="max-w-md mx-auto">
             <Button
               fullWidth
